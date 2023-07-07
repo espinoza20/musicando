@@ -1,0 +1,23 @@
+{
+  "name": "musicando",
+  "version": "1.0.0",
+  "description": "_Esta base de datos está compuesta por las siguientes tablas_\r - Artistas\r - Canciones\r - Albumes\r - Generos",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "method-override": "^3.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },     
+  
+  "json.schemaDownload.enable": true
+ 
+}
