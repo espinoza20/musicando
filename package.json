@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "_Esta base de datos está compuesta por las siguientes tablas_\r - Artistas\r - Canciones\r - Albumes\r - Generos",
   "main": "app.js",
+  "type": "module",
   "scripts": {
     "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
