@@ -1,7 +1,7 @@
 const generosController = {
-list:{
+list:(req, res) => {
     
 },
 }
 
-module.exports =generosController;
+module.exports = generosController;

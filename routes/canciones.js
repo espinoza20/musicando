@@ -9,5 +9,3 @@ router.put('/:id', cancionesController.edit);
 router.delete('/:id', cancionesController.delete);
 
 module.exports = router;
-//  export default cancionesRoutes;
-  

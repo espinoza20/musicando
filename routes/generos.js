@@ -5,5 +5,5 @@ const generosController = require('../controllers/generosController');
 router.get('/', generosController.list);
 
 module.exports = router;
-  //export default generosRoutes;
+  
   
