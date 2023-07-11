@@ -1,33 +1,25 @@
+const db = require('../database/models')
+const Sequelize = require('sequelize');
 const cancion = require('../database/models/Cancion.js');
 
-const cancionesController = {
+let cancionesController = {
   list: (req, res) => {
-    if (req.params.id === undefined) {
-      res.status(200).send('Este es el listado de canciones');
-    } else {
-      res.send('Esta es la cancion numero ' + req.params.id);
-    }
+    db.Canciones.findAll()
+      .then(function(canciones) {
+        let titles = canciones.map(cancion => cancion.title);
+        res.render('Listado de canciones', { canciones: titles });
+      })
+      .catch(function(error) {
+        console.log(error);
+        res.send('Error al listar las canciones');
+      });
   },
-  create: (req, res) => {
-    const crearCancion = new cancion();
-    crearCancion.id = req.body.id,
-    crearCancion.titulo = req.body.titulo,
-    crearCancion.duracion = req.body.duracion,
-    crearCancion.created_at = req.body.created_at,
-    crearCancion.updated_at = req.body.updated_at,
-    crearCancion.genero_id = req.body.genero_id,
-    crearCancion.album_id = req.body.album_id,
-    crearCancion.artistas_id = req.body.artistas_id,
+  create:(req, res) => {
 
-    crearCancion.save((err, cancionStored) => {
-        if (err)res.status(404).send('Error al crear un nuevo registro')
-
-        res.status(200).send({cancion : cancionStored})
-    })
   },
-  edit: (req, res) => {
+  edit:(req, res) => {
     let cancionId = req.params.id;
-    cancion.findById(cancionId, (err, Cancion) => {
+    cancion.findByPk(cancionId, (err, Cancion) => {
       if (err) {
         res.status(404).send('Error al enviar los cambios.');
       } else {
@@ -37,9 +29,9 @@ const cancionesController = {
       }
     });
   },
-  delete: (req, res) => {
+  delete:(req, res) => {
     let cancionId = req.params.id;
-    cancion.findById(cancionId, (err, Cancion) => {
+    cancion.findByPk(cancionId, (err, Cancion) => {
       if (err) {
         res.status(404).send('Error al eliminar la canción.');
       } else {

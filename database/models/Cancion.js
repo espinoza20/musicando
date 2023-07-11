@@ -1,38 +1,38 @@
-module.exports = (sequelize, dataType) => {
+module.exports = (sequelize, DataTypes) => {
     let alias = "Canciones";
     let cols = {
         id: {
-            type: dataTypes.INTEGER,
+            type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
         },
         titulo: {
-            type: dataTypes.STRING
+            type: DataTypes.STRING
         },
         duracion: {
-            type: dataTypes.INTEGER
+            type: DataTypes.INTEGER
         },
         created_at: {
-            type: dataTypes.DATE
+            type: DataTypes.DATE
         },
         updated_at: {
-            type: dataTypes.DATE
+            type: DataTypes.DATE
         },
         genero_id: {
-            type: dataTypes.INTEGER,
+            type: DataTypes.INTEGER,
         },
         album_id: {
-            type: dataTypes.INTEGER,
+            type: DataTypes.INTEGER,
         },
         artistas_id: {
-            type: dataTypes.INTEGER,
+            type: DataTypes.INTEGER,
         },
     };
     let config = {
         tableName: "Canciones",
         timestamps: true
     };
-    const Cancion = sequelize.define(alias.cols.config);
+    const Cancion = sequelize.define(alias, cols, config);
 
     return Cancion;
 };

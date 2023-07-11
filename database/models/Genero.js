@@ -1,21 +1,21 @@
-module.exports = (sequelize, dataType) => {
+module.exports = (sequelize, DataTypes) => {
     let alias = "Generos";
     let cols = {
         id: {
-            type: dataTypes.INTEGER,
+            type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
         },
         nombre: {
             allownull: false,
-            type: dataTypes.STRING,
+            type: DataTypes.STRING,
         },
     };
     let config = {
-        tableName: "Generos",
-        timestamps: false,
+        tableName: "Canciones",
+        timestamps: true
     };
-    const Genero = sequelize.define(alias.cols.config);
+    const Genero = sequelize.define(alias, cols, config);
 
     return Genero;
 }
