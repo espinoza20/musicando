@@ -1,80 +1,63 @@
-/*module.exports = (sequelize, DataTypes) => {
-    let alias = "canciones";
+module.exports = (sequelize, dataTypes) => {
+    let alias = "Canciones";
     let cols = {
         id: {
-            type: DataTypes.INTEGER,
+            type: dataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
         },
         titulo: {
-            type: DataTypes.STRING
+            type: dataTypes.STRING
         },
         duracion: {
-            type: DataTypes.INTEGER
+            type: dataTypes.INTEGER
         },
         created_at: {
-            type: DataTypes.DATE
+            type: dataTypes.DATE
         },
         updated_at: {
-            type: DataTypes.DATE
+            type: dataTypes.DATE
         },
         genero_id: {
-            type: DataTypes.INTEGER,
+            type: dataTypes.INTEGER,
         },
         album_id: {
-            type: DataTypes.INTEGER,
+            type: dataTypes.INTEGER,
         },
         artistas_id: {
-            type: DataTypes.INTEGER,
+            type: dataTypes.INTEGER,
         },
     };
     let config = {
-        tableName: "Canciones",
+        tableName: "canciones",
         timestamps: true
     };
     const Cancion = sequelize.define(alias, cols, config);
 
+    Cancion.associate = function (models){
+      Cancion.belongsTo(models.Albumes,{
+        as: 'albumes',
+        foreignKey: 'album_id',
+      })
+    }
+
+    Cancion.associate = function (models){
+      Cancion.belongsTo(models.Artistas,{
+        as:'artistas',
+        through: 'canciones_artistas',
+        foreignKey: 'cancion_id',
+        otherKey: 'artista_id'
+      })
+
+      Cancion.associate = function (models){
+        Cancion.belongsToMany(models.Generos,{
+          as:'genero',
+          through: 'canciones_generos',
+          foreignKey: 'cancion_id',
+          otherKey:'genero_id',
+        })
+    }
+
     return Cancion;
-};*/
-
-const { DataTypes } = require('sequelize');
-
-module.exports = (sequelize) => {
-  let alias = "canciones";
-  let cols = {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-    },
-    titulo: {
-      type: DataTypes.STRING,
-    },
-    duracion: {
-      type: DataTypes.INTEGER,
-    },
-    created_at: {
-      type: DataTypes.DATE,
-    },
-    updated_at: {
-      type: DataTypes.DATE,
-    },
-    genero_id: {
-      type: DataTypes.INTEGER,
-    },
-    album_id: {
-      type: DataTypes.INTEGER,
-    },
-    artistas_id: {
-      type: DataTypes.INTEGER,
-    },
-  };
-  let config = {
-    tableName: "Canciones",
-    timestamps: true,
-  };
-
-  const Cancion = sequelize.define(alias, cols, config);
-
-  return Cancion;
 };
+}

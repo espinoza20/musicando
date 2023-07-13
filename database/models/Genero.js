@@ -1,21 +1,29 @@
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize, dataTypes) => {
     let alias = "Generos";
     let cols = {
         id: {
-            type: DataTypes.INTEGER,
+            type: dataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
         },
         nombre: {
             allownull: false,
-            type: DataTypes.STRING,
+            type: dataTypes.STRING
         },
     };
     let config = {
-        tableName: "Canciones",
-        timestamps: true
+        tableName: "generos",
+        timestamps: false
     };
     const Genero = sequelize.define(alias, cols, config);
+
+    /*Genero.associate = function (models){
+      Genero.hasMany(models.Canciones, {
+        as: 'canciones',
+        foreignKey: 'genero_id'
+      })
+    }*/
+
 
     return Genero;
 }
