@@ -44,17 +44,13 @@ module.exports = (sequelize, dataTypes) => {
     Cancion.associate = function (models){
       Cancion.belongsTo(models.Artistas,{
         as:'artistas',
-        through: 'canciones_artistas',
-        foreignKey: 'cancion_id',
-        otherKey: 'artista_id'
+        foreignKey: 'artista_id',
       })
 
       Cancion.associate = function (models){
-        Cancion.belongsToMany(models.Generos,{
-          as:'genero',
-          through: 'canciones_generos',
-          foreignKey: 'cancion_id',
-          otherKey:'genero_id',
+        Cancion.belongsTo(models.Generos,{
+          as:'generos',
+          foreignKey: 'genero_id',
         })
     }
 

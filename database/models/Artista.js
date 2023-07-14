@@ -20,11 +20,9 @@ module.exports = (sequelize, dataTypes) => {
     const Artista = sequelize.define(alias, cols, config);
 
     Artista.associate = function (models) {
-        Artista.belongsToMany(models.Canciones, {
+        Artista.hasMany(models.Canciones, {
           as: 'canciones',
-          through: 'canciones_artistas',
           foreignKey: 'artista_id',
-          otherKey:'cancion_id',
         });
     }
     return Artista;

@@ -1,28 +1,22 @@
 const db = require('../database/models')
-const Sequelize = require('sequelize');
+// const Sequelize = require('sequelize');
 const cancion = require('../database/models/Cancion.js');
 
 let cancionesController = {
-  list: (req, res) => {
+  listar: (req, res) => {
     if (req.params.id === undefined) {
       res.status(200).send('Listado de canciones ' + Cancion);
     } else {
       res.send('Esta es la canción número ' + req.params.id);
     }
   },
-  create: (req, res) => {
-    let crearCancion = {
-      titulo: req.body.titulo,
-      duracion: req.body.duracion,
-      created_at: req.body.created_at,
-      updated_at: req.body.updated_at,
-      genero_id: req.body.genero_id,
-      album_id: req.body.album_id,
-      artistas_id: req.body.artistas_id
-    };
-    res.redirect(Cancion);
+  crear: (req, res) => {
+    db.Canciones.findAll()
+    .then(function(canciones){
+      return res.render('listadoCanciones',{canciones:canciones})
+    })
   },
-  edit: async (req, res) => {
+  editar: async (req, res) => {
     let cancionId = req.params.id;
     let cancion = await Cancion.findByPk(cancionId);
     if (!cancion) {
@@ -32,7 +26,7 @@ let cancionesController = {
       res.status(200).send('La canción ha sido editada.');
     }
   },
-  delete: (req, res) => {
+  borrar: (req, res) => {
     let cancionId = req.params.id;
     cancion.findByPk(cancionId, (err, cancion) => {
       if (err) {

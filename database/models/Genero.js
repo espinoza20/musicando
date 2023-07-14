@@ -17,12 +17,12 @@ module.exports = (sequelize, dataTypes) => {
     };
     const Genero = sequelize.define(alias, cols, config);
 
-    /*Genero.associate = function (models){
+    Genero.associate = function (models){
       Genero.hasMany(models.Canciones, {
         as: 'canciones',
         foreignKey: 'genero_id'
       })
-    }*/
+    }
 
 
     return Genero;

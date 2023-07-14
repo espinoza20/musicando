@@ -21,11 +21,9 @@ module.exports = (sequelize, dataTypes) => {
     const Album = sequelize.define(alias, cols, config);
 
     Album.associate = function (models){
-      Album.belongsToMany(models.Canciones, {
+      Album.hasMany(models.Canciones, {
         as: 'canciones',
-        through: 'canciones_albumes',
         foreignKey: 'album_id',
-        otherKey:'cancion_id'
       })
     }
 
