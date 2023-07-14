@@ -1,5 +1,4 @@
 const db = require('../database/models')
-// const Sequelize = require('sequelize');
 const cancion = require('../database/models/Cancion.js');
 
 let cancionesController = {
@@ -12,9 +11,9 @@ let cancionesController = {
   },
   crear: (req, res) => {
     db.Canciones.findAll()
-    .then(function(canciones){
-      return res.render('listadoCanciones',{canciones:canciones})
-    })
+      .then(function (canciones) {
+        return res.render('listadoCanciones', { canciones: canciones })
+      })
   },
   editar: async (req, res) => {
     let cancionId = req.params.id;

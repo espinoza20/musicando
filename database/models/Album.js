@@ -10,7 +10,7 @@ module.exports = (sequelize, dataTypes) => {
             allownull: false,
             type: dataTypes.STRING
         },
-        duracion:{
+        duracion: {
             type: dataTypes.INTEGER
         },
     };
@@ -20,11 +20,11 @@ module.exports = (sequelize, dataTypes) => {
     };
     const Album = sequelize.define(alias, cols, config);
 
-    Album.associate = function (models){
-      Album.hasMany(models.Canciones, {
-        as: 'canciones',
-        foreignKey: 'album_id',
-      })
+    Album.associate = function (models) {
+        Album.hasMany(models.Canciones, {
+            as: 'canciones',
+            foreignKey: 'album_id',
+        })
     }
 
 

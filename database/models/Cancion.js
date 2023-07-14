@@ -34,26 +34,26 @@ module.exports = (sequelize, dataTypes) => {
     };
     const Cancion = sequelize.define(alias, cols, config);
 
-    Cancion.associate = function (models){
-      Cancion.belongsTo(models.Albumes,{
-        as: 'albumes',
-        foreignKey: 'album_id',
-      })
-    }
-
-    Cancion.associate = function (models){
-      Cancion.belongsTo(models.Artistas,{
-        as:'artistas',
-        foreignKey: 'artista_id',
-      })
-
-      Cancion.associate = function (models){
-        Cancion.belongsTo(models.Generos,{
-          as:'generos',
-          foreignKey: 'genero_id',
+    Cancion.associate = function (models) {
+        Cancion.belongsTo(models.Albumes, {
+            as: 'albumes',
+            foreignKey: 'album_id',
         })
     }
 
-    return Cancion;
-};
+    Cancion.associate = function (models) {
+        Cancion.belongsTo(models.Artistas, {
+            as: 'artistas',
+            foreignKey: 'artista_id',
+        })
+
+        Cancion.associate = function (models) {
+            Cancion.belongsTo(models.Generos, {
+                as: 'generos',
+                foreignKey: 'genero_id',
+            })
+        }
+
+        return Cancion;
+    };
 }
